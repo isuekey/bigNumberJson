@@ -29,6 +29,30 @@ describe('Object with Big Number wants JSON', () => {
       expect(json).to.equal('{}');
     });
   });
+  const normalNumberTestData = { undef: undefined, isnull: null, normalNum:123.445, stringNumber:'1333' };
+  describe(`Object is ${JSON.stringify(normalNumberTestData)}`, () => {
+    const jsonStringify = JSON.stringify(normalNumberTestData);
+    it(`should return ${jsonStringify}, bigNumber is undefined`, () => {
+      const json = bigJson.stringifyObjectWithBigNumber(normalNumberTestData);
+      expect(json).to.be.an('string');
+      expect(json).to.equal(jsonStringify);
+    });
+    it(`should return ${jsonStringify}, bigNumber is empty`, () => {
+      const json = bigJson.stringifyObjectWithBigNumber(normalNumberTestData, []);
+      expect(json).to.be.an('string');
+      expect(json).to.equal(jsonStringify);
+    });
+    it(`should return ${jsonStringify}, bigNumber is not empty`, () => {
+      const json = bigJson.stringifyObjectWithBigNumber(normalNumberTestData, ['testKey']);
+      expect(json).to.be.an('string');
+      expect(json).to.equal(jsonStringify);
+    });
+    it(`should return ${jsonStringify}, bigNumber is not empty`, () => {
+      const json = bigJson.stringifyObjectWithBigNumber(normalNumberTestData, ['stringNumber']);
+      expect(json).to.be.an('string');
+      expect(json).to.equal('{"undef":undefined, "isnull":null, "normalNum":123.445, "stringNumber":1333}');
+    });
+  });
   const bigNumberTestData = {testBigNumber:"12345678901234567890", testBigNumber2:"123456789012345678902"};
   describe(`Object is ${JSON.stringify(bigNumberTestData)}`, () => {
     it(`should return ${JSON.stringify(bigNumberTestData)}, bigNumber is undefined`, () => {
