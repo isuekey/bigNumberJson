@@ -1,4 +1,5 @@
 const expect = require('chai').expect;
+const Big = require('big.js');
 const bigJson = require('../index.js');
 
 describe('Object with Big Number wants JSON', () => {
@@ -53,7 +54,7 @@ describe('Object with Big Number wants JSON', () => {
       expect(json).to.equal('{"undef":undefined, "isnull":null, "normalNum":123.445, "stringNumber":1333}');
     });
   });
-  const bigNumberTestData = {testBigNumber:"12345678901234567890", testBigNumber2:"123456789012345678902"};
+    const bigNumberTestData = {testBigNumber:"12345678901234567890", testBigNumber2:new Big("123456789012345678902")};
   describe(`Object is ${JSON.stringify(bigNumberTestData)}`, () => {
     it(`should return ${JSON.stringify(bigNumberTestData)}, bigNumber is undefined`, () => {
       const json = bigJson.stringifyObjectWithBigNumber(bigNumberTestData);

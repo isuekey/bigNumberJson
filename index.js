@@ -24,3 +24,8 @@ const stringifyObjectWithBigNumber = (obj, bigNumberKeys) => {
 module.exports = {
   stringifyObjectWithBigNumber
 };
+
+
+exports.printMsg = function() {
+  console.log("This is a message from the demo package");
+};
